@@ -1,0 +1,57 @@
+{{customerForm.value | json}}
+
+<form [formGroup]="customerForm" novalidate>
+  <div class="form-group">
+    <input class="form-control" type="number" name="id" placeholder="Employee Id" formControlName="id">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" name="name" placeholder="Employee Name" formControlName="name">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="email" name="email" placeholder="Employee email" formControlName="email">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="date" name="date" placeholder="Employee DOB" formControlName="dob">
+  </div>
+  <button type="button" (click)="addCard()" class="btn btn-primary">Add</button>
+  <br>
+  <hr>
+  <div formArrayName="address" class="row">
+    <div *ngFor="let address of customerForm['controls'].address['controls'];let i=index">
+          <div [formGroupName]="i" class="col-sm-4" >
+            <input type="radio">
+              <div class="form-group">
+                <input type="text" name="cardNumber" placeholder="Address 1" class="form-control" formControlName="addr1">
+              </div>
+              <div class="form-group">
+                <input type="text" name="expMonth" placeholder="Address 2" class="form-control" formControlName="addr2">
+              </div>
+              <div class="form-group">
+                <input type="text" name="expYear" placeholder="City" class="form-control" formControlName="city">
+              </div>
+              <div class="form-group">
+                <input type="text" name="cvv" placeholder="Pin" class="form-control" formControlName="pin">
+              </div>
+            </div>
+      
+  </div>
+</div>
+<!--   expMonth expYear cvv-->
+  <div formGroupName="cards">
+    <div class="form-group">
+      <input class="form-control" type="number" name="addr1" placeholder="Card Number" formControlName="cardNumber">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="number" name="addr2" placeholder="Expiry Month" formControlName="expMonth">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="number" name="city" placeholder="Expiry Year" formControlName="expYear">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="number" name="pin" placeholder="cvv" formControlName="cvv">
+    </div>
+  </div>
+  <div>
+    <button type="button" (click)="save()" class="btn btn-primary">Save</button>
+  </div>
+</form>
